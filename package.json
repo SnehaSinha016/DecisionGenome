@@ -1,0 +1,19 @@
+{
+  "name": "decisiongenome",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+ "scripts": {
+  "client": "npm --prefix client run dev",
+  "server": "npm --prefix server run dev",
+  "ai": "cd ai-engine && uvicorn app:app --reload",
+  "dev": "concurrently \"npm run client\" \"npm run server\" \"npm run ai\""
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "concurrently": "^10.0.3"
+  }
+}
