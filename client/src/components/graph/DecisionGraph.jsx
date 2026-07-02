@@ -118,57 +118,43 @@ useEffect(() => {
 };
 
   const loadDecisionGraph = async () => {
+  try {
+    const data = await getDecisionGraph();
 
-    try {
+    console.log("Graph API:", data);
 
-      const data = await getDecisionGraph();
-      setDecisionViews(data.graph);
+    const graphNodes = data.nodes.map((node, index) => ({
+      id: node.id,
+      type: node.type === "Decision" ? "decision" : "entity",
+      data: node,
+      position: {
+        x: (index % 5) * 300,
+        y: Math.floor(index / 5) * 220,
+      },
+    }));
 
-console.log(data);
+    const graphEdges = data.edges.map((edge) => ({
+      id: edge._id || `${edge.source}-${edge.target}`,
+      source: edge.source,
+      target: edge.target,
+      type: "smoothstep",
+      animated: true,
+      markerEnd: {
+        type: MarkerType.ArrowClosed,
+      },
+      style: {
+        stroke: "#6366F1",
+        strokeWidth: 2.5,
+      },
+    }));
 
-const layout = generateDecisionLayout(
-    data.graph
-);
-console.log("Nodes:", layout.nodes.length);
-console.log("Edges:", layout.edges.length);
-console.log(layout.edges.slice(0, 5));
+    setNodes(graphNodes);
+    setEdges(graphEdges);
 
-      const styledEdges = layout.edges.map((edge) => ({
-
-        ...edge,
-
-        type: "smoothstep",
-
-        animated: true,
-
-        markerEnd: {
-
-          type: MarkerType.Arrowclosed,
-          width:20,
-          height:20
-
-        },
-
-        style: {
-    stroke: "#6366F1",
-    strokeWidth: 2.5
-},
-
-      }));
-
-      setNodes(layout.nodes);
-
-      setEdges(styledEdges);
-
-    }
-
-    catch (err) {
-
-      console.error(err);
-
-    }
-
-  };
+  } catch (err) {
+    console.error(err);
+  }
+};
   useEffect(() => {
 
     if (!subgraph) {

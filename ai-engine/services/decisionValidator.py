@@ -10,18 +10,12 @@ def verify_decisions(original_text, decisions):
     print(f"Document Length: {len(original_text)}")
     print(f"Decisions Received: {len(decisions)}")
 
+    MAX_CHARS=15000
+
     prompt = f"""
 {decisionValidatorPrompt}
 
-==========================
-ORIGINAL DOCUMENT
-==========================
-
 {original_text[:5000]}
-
-==========================
-EXTRACTED DECISIONS
-==========================
 
 {json.dumps(decisions, indent=2)}
 

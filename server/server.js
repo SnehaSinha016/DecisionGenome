@@ -29,22 +29,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", analyzeRoutes);
-app.use("/graph", graphRoutes);
+app.use("/api/graph", graphRoutes);
 app.use("/analytics", analyticsRoutes);
 app.use("/recommend", recommendationRoutes);
 app.use("/advisor", advisorRoutes);
 app.use( "/executive-advisor",executiveAdvisorRoutes);
-app.use("/graph", graphSearchRoutes);
+app.use("/api/graph", graphSearchRoutes);
 app.use("/graph", relationshipExplorerRoutes);
 app.use("/query", queryRoutes);
 app.use("/api/ai", aiRoutes);
 app.use("/api/documents", documentRoutes);
-app.use("/graph", decisionGraphRoutes);
+app.use("/api/graph", decisionGraphRoutes);
 import relationshipRoutes from "./routes/relationshipRoutes.js";
-app.use("/graph", relationshipRoutes);
+app.use("/api/graph", relationshipRoutes);
 app.use("/intelligence", executiveAdvisorRoutes);
 app.use("/intelligence", copilotRoutes);
-app.use("/graph",graphTraversalRoutes);
+app.use("/api/graph",graphTraversalRoutes);
 
 
 mongoose.connect(process.env.MONGO_URL)
