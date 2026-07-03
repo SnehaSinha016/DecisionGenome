@@ -41,7 +41,7 @@ const [details,setDetails]=useState(null);
 
 try{
     const res = await axios.get(
-      "http://localhost:7000/graph"
+      "https://decisiongenome-1.onrender.com/graph"
     );
 
     const graphNodes = res.data.nodes.map((node) => ({
@@ -98,7 +98,7 @@ setEdges(graphEdges);
 
     const res=await axios.get(
 
-        `http://localhost:7000/graph/explore?type=${node.data.type}&value=${node.data.label}`
+        `https://decisiongenome-1.onrender.com/graph/explore?type=${node.data.type}&value=${node.data.label}`
 
     );
 
