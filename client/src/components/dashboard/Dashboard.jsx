@@ -11,7 +11,7 @@ import UploadBox from "./UploadBox";
 import StatCard from "./StatCard";
 import SectionCard from "../common/SectionCard";
 import DecisionGraph from "../graph/DecisionGraph";
-import Copilot from "../copilot/Copilot";
+import Copilot from "../copilot/copilot";
 import GraphSearch from "../graph/GraphSearch";
 import RelationshipExplorer from "../graph/RelationshipExplorer";
 import ExecutiveDashboard from "../intelligence/ExecutiveDashboard";
