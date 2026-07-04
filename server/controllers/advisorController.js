@@ -5,7 +5,7 @@ export const advisor = async (req, res) => {
     try {
 
         const response = await axios.post(
-            "http://127.0.0.1:8000/decision-advisor",
+            "https://decisiongenome.onrender.com/decision-advisor",
             req.body
         );
 
