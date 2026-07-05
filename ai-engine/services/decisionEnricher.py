@@ -9,8 +9,8 @@ def enrich_decisions(decisions):
     if len(decisions) == 0:
         return []
 
-    print("\n========== ENRICHMENT STARTED ==========")
-    print(f"Received {len(decisions)} decisions")
+   
+    MAX_CHAR=15000
 
     prompt = f"""
 {decisionEnrichmentPrompt}
@@ -27,9 +27,4 @@ Validated Decisions
         .replace("```", "")
         .strip()
     )
-
-    print("\n========== ENRICHMENT RESPONSE ==========")
-    print(response)
-    print("=========================================\n")
-
     return json.loads(response)
