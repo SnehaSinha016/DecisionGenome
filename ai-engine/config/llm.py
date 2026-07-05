@@ -1,29 +1,46 @@
 import os
-
 from groq import Groq
 from dotenv import load_dotenv
 
 load_dotenv()
 
-client = Groq(
-    api_key=os.getenv("GROQ_API_KEY")
-)
+API_KEY = os.getenv("GROQ_API_KEY")
+
+if not API_KEY:
+    raise ValueError("GROQ_API_KEY not found.")
+
+client = Groq(api_key=API_KEY)
+
+SYSTEM_PROMPT = """
+You are DecisionGenome AI.
+
+Your job is to analyze enterprise documents,
+extract structured business knowledge,
+identify decisions,
+stakeholders,
+risks,
+dependencies,
+and output accurate JSON.
+"""
 
 
-def generate(prompt):
+def generate_response(prompt: str,
+                      model: str = "llama-3.3-70b-versatile",
+                      temperature: float = 0.0) -> str:
 
-    completion = client.chat.completions.create(
-
-        model="llama-3.3-70b-versatile",
-
+    response = client.chat.completions.create(
+        model=model,
+        temperature=temperature,
         messages=[
+            {
+                "role": "system",
+                "content": SYSTEM_PROMPT
+            },
             {
                 "role": "user",
                 "content": prompt
             }
-        ],
-
-        temperature=0,
+        ]
     )
 
-    return completion.choices[0].message.content
+    return response.choices[0].message.content
