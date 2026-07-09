@@ -10,6 +10,8 @@
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
 ---
+## Deployment Link
+ https://decision-genome.vercel.app/
 
 ## Overview
 
